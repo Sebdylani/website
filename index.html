@@ -48,7 +48,6 @@
       box-shadow: 0 6px 15px rgba(0,0,0,0.08);
       overflow: hidden;
       transition: transform 0.2s;
-      cursor: pointer;
     }
 
     .card:hover {
@@ -81,40 +80,6 @@
       font-size: 0.85rem;
       color: #777;
     }
-
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.6);
-    }
-
-    .modal-content {
-      background: white;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 600px;
-      position: relative;
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .modal h2 {
-      color: #bc002d;
-    }
   </style>
 </head>
 
@@ -128,97 +93,45 @@
 <div class="container">
   <div class="cards">
 
-    <div class="card" onclick="openModal('tokyo')">
+    <div class="card">
       <img src="https://images.unsplash.com/photo-1549693578-d683be217e58" />
       <div class="card-content">
         <h3>Tokyo</h3>
-        <p>Japan’s capital city, blending modern technology with traditional culture.</p>
+        <p>
+          Japan’s capital city, blending modern technology with traditional culture.
+          Visit Shibuya, Akihabara, and historic temples.
+        </p>
       </div>
     </div>
 
-    <div class="card" onclick="openModal('kyoto')">
+    <div class="card">
       <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d" />
       <div class="card-content">
         <h3>Kyoto</h3>
-        <p>Famous for its shrines, temples, and traditional tea houses.</p>
+        <p>
+          Famous for its shrines, temples, and traditional tea houses.
+          A perfect place to experience old Japan.
+        </p>
       </div>
     </div>
 
-    <div class="card" onclick="openModal('osaka')">
+    <div class="card">
       <img src="https://images.unsplash.com/photo-1590559899731-a382839e5549" />
       <div class="card-content">
         <h3>Osaka</h3>
-        <p>Known for street food, nightlife, and friendly locals.</p>
+        <p>
+          Known for street food, nightlife, and friendly locals.
+          Don’t miss Dotonbori and Osaka Castle.
+        </p>
       </div>
     </div>
 
-  </div>
-</div>
-
-<!-- Modal structure -->
-<div id="tokyo" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('tokyo')">&times;</span>
-    <h2>Tokyo 🇯🇵</h2>
-    <p>Top Spots:</p>
-    <ul>
-      <li>Shibuya Crossing</li>
-      <li>Akihabara</li>
-      <li>Senso-ji Temple</li>
-      <li>Tokyo Tower</li>
-    </ul>
-  </div>
-</div>
-
-<div id="kyoto" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('kyoto')">&times;</span>
-    <h2>Kyoto 🇯🇵</h2>
-    <p>Top Spots:</p>
-    <ul>
-      <li>Kiyomizu-dera Temple</li>
-      <li>Fushimi Inari Shrine</li>
-      <li>Gion District</li>
-      <li>Arashiyama Bamboo Grove</li>
-    </ul>
-  </div>
-</div>
-
-<div id="osaka" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('osaka')">&times;</span>
-    <h2>Osaka 🇯🇵</h2>
-    <p>Top Spots:</p>
-    <ul>
-      <li>Dotonbori</li>
-      <li>Osaka Castle</li>
-      <li>Universal Studios Japan</li>
-      <li>Kuromon Market</li>
-    </ul>
   </div>
 </div>
 
 <footer>
   © 2026 Explore Japan Travel App | School Project Demo
 </footer>
-
-<script>
-  function openModal(city) {
-    document.getElementById(city).style.display = "block";
-  }
-
-  function closeModal(city) {
-    document.getElementById(city).style.display = "none";
-  }
-
-  // Close modal if clicked outside content
-  window.onclick = function(event) {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-      if (event.target == modal) modal.style.display = "none";
-    });
-  }
-</script>
 
 </body>
 </html>
