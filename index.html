@@ -97,11 +97,17 @@
 
     .modal-content {
       background: white;
-      margin: 10% auto;
+      margin: 5% auto;
       padding: 20px;
-      border-radius: 10px;
-      max-width: 600px;
+      border-radius: 12px;
+      max-width: 800px;
       position: relative;
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
     .close {
@@ -110,10 +116,36 @@
       right: 15px;
       font-size: 1.5rem;
       cursor: pointer;
+      color: #bc002d;
     }
 
     .modal h2 {
       color: #bc002d;
+      margin-top: 0;
+    }
+
+    .spot {
+      display: flex;
+      margin-bottom: 20px;
+      gap: 15px;
+    }
+
+    .spot img {
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .spot-content h4 {
+      margin: 0 0 5px 0;
+      color: #ff4b5c;
+    }
+
+    .spot-content p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.4;
     }
   </style>
 </head>
@@ -122,17 +154,17 @@
 
 <header>
   <h1>Explore Japan 🇯🇵</h1>
-  <p>Your simple travel guide to Japan's top destinations</p>
+  <p>Your interactive travel guide to Japan's top destinations</p>
 </header>
 
-<kydiv class="container">
+<div class="container">
   <div class="cards">
 
     <div class="card" onclick="openModal('tokyo')">
       <img src="https://images.unsplash.com/photo-1549693578-d683be217e58" />
       <div class="card-content">
-        <h3>Too</h3>
-        <p>Japan’s capital city, blending modern technology with traditional culture.</p>
+        <h3>Tokyo</h3>
+        <p>The capital city, blending modern technology with traditional culture.</p>
       </div>
     </div>
 
@@ -140,7 +172,7 @@
       <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d" />
       <div class="card-content">
         <h3>Kyoto</h3>
-        <p>Famous for its shrines, temples, and traditional tea houses.</p>
+        <p>Famous for shrines, temples, and traditional tea houses.</p>
       </div>
     </div>
 
@@ -155,46 +187,72 @@
   </div>
 </div>
 
-<!-- Modal structure -->
+<!-- Tokyo Modal -->
 <div id="tokyo" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('tokyo')">&times;</span>
     <h2>Tokyo 🇯🇵</h2>
-    <p>Top Spots:</p>
-    <ul>
-      <li>Shibuya Crossing</li>
-      <li>Akihabara</li>
-      <li>Senso-ji Temple</li>
-      <li>Tokyo Tower</li>
-    </ul>
+    <p style="text-align:center;">Meaning: “Eastern Capital”. Tokyo is Japan’s bustling capital full of modern wonders and historic sites.</p>
+    <div class="spot">
+      <img src="images/Shibuya Crossing.jpg" />
+      <div class="spot-content">
+        <h4>Shibuya Crossing</h4>
+        <p>Iconic busy intersection symbolizing Tokyo's vibrant city life. A must-see for urban exploration.</p>
+      </div>
+    </div>
+    <div class="spot">
+      <img src="images/se" />
+      <div class="spot-content">
+        <h4>Senso-ji Temple</h4>
+        <p>Tokyo’s oldest temple. A spiritual site offering a glimpse of traditional Japan amidst the city.</p>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- Kyoto Modal -->
 <div id="kyoto" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('kyoto')">&times;</span>
     <h2>Kyoto 🇯🇵</h2>
-    <p>Top Spots:</p>
-    <ul>
-      <li>Kiyomizu-dera Temple</li>
-      <li>Fushimi Inari Shrine</li>
-      <li>Gion District</li>
-      <li>Arashiyama Bamboo Grove</li>
-    </ul>
+    <p style="text-align:center;">Meaning: “Capital City”. Kyoto preserves Japan’s historical and cultural heritage with temples and tea houses.</p>
+    <div class="spot">
+      <img src="images/Fushimiinari Shrine, Kyoto “Senbon Torii_, or thousand gates.jpg" />
+      <div class="spot-content">
+        <h4>Fushimi Inari Shrine</h4>
+        <p>Famous for thousands of red torii gates. A spiritual journey and beautiful photo opportunity.</p>
+      </div>
+    </div>
+    <div class="spot">
+      <img src="images/Japanese Bamboo Forest_ Tall trees at Arashiyama in travel holid.jpg" />
+      <div class="spot-content">
+        <h4>Arashiyama Bamboo Grove</h4>
+        <p>Serene bamboo forest creating a peaceful walk through nature. A must for scenic beauty.</p>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- Osaka Modal -->
 <div id="osaka" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('osaka')">&times;</span>
     <h2>Osaka 🇯🇵</h2>
-    <p>Top Spots:</p>
-    <ul>
-      <li>Dotonbori</li>
-      <li>Osaka Castle</li>
-      <li>Universal Studios Japan</li>
-      <li>Kuromon Market</li>
-    </ul>
+    <p style="text-align:center;">Meaning: “Large Hill”. Osaka is famous for its vibrant food scene and energetic nightlife.</p>
+    <div class="spot">
+      <img src="images/Dotonbori.jpg" />
+      <div class="spot-content">
+        <h4>Dotonbori</h4>
+        <p>Famous street full of neon lights and food stalls. Perfect for tasting local cuisine.</p>
+      </div>
+    </div>
+    <div class="spot">
+      <img src="images/Osaka-Japon-Asia.jpg" />
+      <div class="spot-content">
+        <h4>Osaka Castle</h4>
+        <p>Historic castle showcasing Japan’s feudal architecture and a symbol of Osaka’s heritage.</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -211,7 +269,6 @@
     document.getElementById(city).style.display = "none";
   }
 
-  // Close modal if clicked outside content
   window.onclick = function(event) {
     const modals = document.querySelectorAll('.modal');
     modals.forEach(modal => {
