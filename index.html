@@ -1,172 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Explore Japan - Travel App</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Explore Japan - Travel App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #333;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #333;
+    }
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+    header {
+      background: linear-gradient(135deg, #bc002d, #ff4b5c);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
 
-header {
-  background: linear-gradient(135deg, #bc002d, #ff4b5c);
-  color: white;
-  padding: 30px;
-  text-align: center;
-}
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 2.2rem;
-}
+    header p {
+      margin-top: 8px;
+      opacity: 0.9;
+    }
 
-header p {
-  margin-top: 8px;
-  opacity: 0.9;
-}
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
 
-.container {
-  flex: 1;
-  max-width: 1200px;
-  margin: 30px auto;
-  padding: 0 20px;
-}
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
 
-.card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  overflow: hidden;
-  transition: transform 0.2s;
-  cursor: pointer;
-}
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-.card:hover {
-  transform: translateY(-5px);
-}
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
 
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
+    .card-content {
+      padding: 20px;
+    }
 
-.card-content {
-  padding: 20px;
-}
+    .card-content h3 {
+      margin-top: 0;
+      color: #bc002d;
+    }
 
-.card-content h3 {
-  margin-top: 0;
-  color: #bc002d;
-}
+    .card-content p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
 
-.card-content p {
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #777;
+    }
 
-.modal-content {
-  background: white;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 1000px;
-  animation: fadeIn 0.3s;
-}
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+    .modal-content {
+      background: white;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      position: relative;
+    }
 
-.close {
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #bc002d;
-}
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-.modal h2 {
-  color: #bc002d;
-  margin-top: 0;
-  text-align: center;
-}
-
-.spot {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 25px;
-  flex-wrap: wrap;
-}
-
-.spot img {
-  width: 300px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-
-.spot-content {
-  flex: 1;
-}
-
-.spot-content h4 {
-  margin: 0 0 8px 0;
-  color: #ff4b5c;
-  font-size: 1.2rem;
-}
-
-.spot-content p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.85rem;
-  color: #777;
-}
-</style>
+    .modal h2 {
+      color: #bc002d;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
   <h1>Explore Japan 🇯🇵</h1>
-  <p>Your immersive travel guide to Japan's top destinations</p>
+  <p>Your simple travel guide to Japan's top destinations</p>
 </header>
 
-<div class="container">
+<kydiv class="container">
   <div class="cards">
+
     <div class="card" onclick="openModal('tokyo')">
       <img src="https://images.unsplash.com/photo-1549693578-d683be217e58" />
       <div class="card-content">
-        <h3>Tokyo</h3>
-        <p>The capital city, blending modern technology with traditional culture.</p>
+        <h3>Too</h3>
+        <p>Japan’s capital city, blending modern technology with traditional culture.</p>
       </div>
     </div>
 
@@ -174,7 +140,7 @@ footer {
       <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d" />
       <div class="card-content">
         <h3>Kyoto</h3>
-        <p>Famous for shrines, temples, and traditional tea houses.</p>
+        <p>Famous for its shrines, temples, and traditional tea houses.</p>
       </div>
     </div>
 
@@ -185,75 +151,50 @@ footer {
         <p>Known for street food, nightlife, and friendly locals.</p>
       </div>
     </div>
+
   </div>
 </div>
 
-<!-- Tokyo Modal -->
+<!-- Modal structure -->
 <div id="tokyo" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('tokyo')">&times;</span>
     <h2>Tokyo 🇯🇵</h2>
-    <p style="text-align:center;">Meaning: “Eastern Capital”. Tokyo is Japan’s bustling capital full of modern wonders and historic sites.</p>
-    <div class="spot">
-      <img src="images/Shibuya Crossing.jpg" />
-      <div class="spot-content">
-        <h4>Shibuya Crossing</h4>
-        <p>Iconic busy intersection symbolizing Tokyo's vibrant city life. A must-see for urban exploration.</p>
-      </div>
-    </div>
-    <div class="spot">
-      <img src="images/se" />
-      <div class="spot-content">
-        <h4>Senso-ji Temple</h4>
-        <p>Tokyo’s oldest temple. A spiritual site offering a glimpse of traditional Japan amidst the city.</p>
-      </div>
-    </div>
+    <p>Top Spots:</p>
+    <ul>
+      <li>Shibuya Crossing</li>
+      <li>Akihabara</li>
+      <li>Senso-ji Temple</li>
+      <li>Tokyo Tower</li>
+    </ul>
   </div>
 </div>
 
-<!-- Kyoto Modal -->
 <div id="kyoto" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('kyoto')">&times;</span>
     <h2>Kyoto 🇯🇵</h2>
-    <p style="text-align:center;">Meaning: “Capital City”. Kyoto preserves Japan’s historical and cultural heritage with temples and tea houses.</p>
-    <div class="spot">
-      <img src="images/Fushimiinari Shrine, Kyoto “Senbon Torii_, or thousand gates.jpg" />
-      <div class="spot-content">
-        <h4>Fushimi Inari Shrine</h4>
-        <p>Famous for thousands of red torii gates. A spiritual journey and beautiful photo opportunity.</p>
-      </div>
-    </div>
-    <div class="spot">
-      <img src="images/Japanese Bamboo Forest_ Tall trees at Arashiyama in travel holid.jpg" />
-      <div class="spot-content">
-        <h4>Arashiyama Bamboo Grove</h4>
-        <p>Serene bamboo forest creating a peaceful walk through nature. A must for scenic beauty.</p>
-      </div>
-    </div>
+    <p>Top Spots:</p>
+    <ul>
+      <li>Kiyomizu-dera Temple</li>
+      <li>Fushimi Inari Shrine</li>
+      <li>Gion District</li>
+      <li>Arashiyama Bamboo Grove</li>
+    </ul>
   </div>
 </div>
 
-<!-- Osaka Modal -->
 <div id="osaka" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('osaka')">&times;</span>
     <h2>Osaka 🇯🇵</h2>
-    <p style="text-align:center;">Meaning: “Large Hill”. Osaka is famous for its vibrant food scene and energetic nightlife.</p>
-    <div class="spot">
-      <img src="images/Dotonbori.jpg" />
-      <div class="spot-content">
-        <h4>Dotonbori</h4>
-        <p>Famous street full of neon lights and food stalls. Perfect for tasting local cuisine.</p>
-      </div>
-    </div>
-    <div class="spot">
-      <img src="images/Osaka-Japon-Asia.jpg" />
-      <div class="spot-content">
-        <h4>Osaka Castle</h4>
-        <p>Historic castle showcasing Japan’s feudal architecture and a symbol of Osaka’s heritage.</p>
-      </div>
-    </div>
+    <p>Top Spots:</p>
+    <ul>
+      <li>Dotonbori</li>
+      <li>Osaka Castle</li>
+      <li>Universal Studios Japan</li>
+      <li>Kuromon Market</li>
+    </ul>
   </div>
 </div>
 
@@ -262,19 +203,21 @@ footer {
 </footer>
 
 <script>
-function openModal(city) {
-  document.getElementById(city).style.display = "block";
-}
-function closeModal(city) {
-  document.getElementById(city).style.display = "none";
-}
-// Close modal if clicked outside content
-window.onclick = function(event) {
-  const modals = document.querySelectorAll('.modal');
-  modals.forEach(modal => {
-    if (event.target == modal) modal.style.display = "none";
-  });
-}
+  function openModal(city) {
+    document.getElementById(city).style.display = "block";
+  }
+
+  function closeModal(city) {
+    document.getElementById(city).style.display = "none";
+  }
+
+  // Close modal if clicked outside content
+  window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      if (event.target == modal) modal.style.display = "none";
+    });
+  }
 </script>
 
 </body>
